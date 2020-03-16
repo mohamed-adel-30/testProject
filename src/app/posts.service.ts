@@ -14,7 +14,7 @@ export class postService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any> {
-    return this.http.get("http://localhost:3000/users").pipe();
+    return this.http.get("http://localhost:3000/users");
   }
 
   editData(data , id) {

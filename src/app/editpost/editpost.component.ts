@@ -10,8 +10,15 @@ import {postService} from './../posts.service'
 export class EditpostComponent implements OnInit {
   ind;
   postEdit:any = {};
+  newPost:any= {}
+  newPostTitle = document.getElementById("newTitle")
+  newPostBody = document.getElementById("newBody")
+  
+  
   constructor(private route:ActivatedRoute , private service:postService) {
       this.ind = route.snapshot.paramMap.get('id')
+      console.log(this.newPostTitle);
+      
    }
 
   ngOnInit(){
@@ -20,11 +27,16 @@ export class EditpostComponent implements OnInit {
     })
    
   }
-  savePost(){
+  savePost(t,b){
+    this.newPost = {
+      "title":t.value,
+      "body":b.value
+    }
+
     console.log(this.postEdit,this.postEdit.id);
     
-    this.service.editData(this.postEdit,this.postEdit.id).subscribe((post)=>{
-      console.log(post = this.postEdit);
+    this.service.editData(this.newPost,this.postEdit.id).subscribe((post)=>{
+      console.log(post);
       
     })
   }
